@@ -14,7 +14,7 @@ RSpec.describe 'Reservations', type: :request do
     # login user
     post '/login', params: { user: { email: user.email, password: user.password } }
     expect(response).to have_http_status(:success)
-    Authorization = response.headers['Authorization']
+    Authorization = response.headers['Authorization'] # rubocop:disable Lint/ConstantDefinitionInBlock
   end
 
   describe 'GET /reservations' do
