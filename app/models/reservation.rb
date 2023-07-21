@@ -1,4 +1,4 @@
 class Reservation < ApplicationRecord
   belongs_to :user
-  # TODO: add belongs_to :laptop
+  has_many :laptops # , through: :laptop_reservations
 end
