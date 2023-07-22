@@ -33,7 +33,6 @@ class LaptopsController < ApplicationController
     render json: { error: 'Laptop not found' }, status: :not_found
   end
 
-
   private
 
   def laptop_params
