@@ -34,4 +34,33 @@ RSpec.describe 'Reservations', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET /reservations/:id' do
+    it 'returns a reservation' do
+      reservation = FactoryBot.create(:reservation)
+
+      get "/reservations/#{reservation.id}", headers: { Authorization: Authorization }
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)['id']).to eq(reservation.id)
+    end
+
+    it 'returns an error if reservation is not found' do
+      get '/reservations/999', headers: { Authorization: Authorization }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe 'DELETE /reservations/:id' do
+    it 'deletes a reservation' do
+      reservation = FactoryBot.create(:reservation)
+
+      delete "/reservations/#{reservation.id}", headers: { Authorization: Authorization }
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns an error if reservation is not found' do
+      delete '/reservations/999', headers: { Authorization: Authorization }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end

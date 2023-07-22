@@ -17,4 +17,21 @@ class ReservationsController < ApplicationController
       render json: reservation.errors, status: :unprocessable_entity
     end
   end
+
+  def show
+    reservation = Reservation.find(params[:id])
+    render json: reservation
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Reservation not found. id might be incorrect or the Reservation might have been deleted' },
+           status: :not_found
+  end
+
+  def destroy
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
+    head :no_content
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Reservation not found. id might be incorrect or the Reservation might have been deleted' },
+           status: :not_found
+  end
 end
