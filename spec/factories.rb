@@ -10,4 +10,13 @@ FactoryBot.define do
   factory :reservation do
     user
   end
+
+  factory :laptop do
+    name { 'MacBook Pro' }
+    price { 1299.99 }
+    cpu { 'Intel Core i7' }
+    memory { 16 }
+    storage { 512 }
+    association :user
+  end
 end
