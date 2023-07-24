@@ -1,4 +1,5 @@
 class LaptopReservation < ApplicationRecord
+  belongs_to :laptop
   belongs_to :reservation
 
   validates :city, presence: true
