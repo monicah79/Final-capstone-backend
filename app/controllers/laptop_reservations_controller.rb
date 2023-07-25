@@ -1,6 +1,6 @@
 class LaptopReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_laptop_reservation, only: %i[show update destroy]
+  before_action :set_laptop_reservation, only: %i[show destroy]
 
   def index
     @laptop_reservations = LaptopReservation.all
@@ -13,18 +13,15 @@ class LaptopReservationsController < ApplicationController
   end
 
   def create
+    @reservation = Reservation.create(user: current_user)
+    @laptop_id = params[:laptop_reservation][:laptop_id]
+
     @laptop_reservation = LaptopReservation.new(laptop_reservation_params)
+    @laptop_reservation.reservation = @reservation
+    @laptop_reservation.laptop = Laptop.find(@laptop_id)
 
     if @laptop_reservation.save
-      render json: @laptop_reservation, status: :created, location: @laptop_reservation
-    else
-      render json: @laptop_reservation.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @laptop_reservation.update(laptop_reservation_params)
-      render json: @laptop_reservation
+      render json: @laptop_reservation, status: :created
     else
       render json: @laptop_reservation.errors, status: :unprocessable_entity
     end
@@ -41,6 +38,6 @@ class LaptopReservationsController < ApplicationController
   end
 
   def laptop_reservation_params
-    params.require(:laptop_reservation).permit(:name, :quantity, :city)
+    params.require(:laptop_reservation).permit(:quantity, :city)
   end
 end
