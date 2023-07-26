@@ -195,23 +195,7 @@ paths:
                 $ref: "#/components/schemas/Reservation"
         "404":
           description: Reservation not found
-    delete:
-      summary: Delete a reservation by ID
-      tags:
-        - Reservations
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "204":
-          description: Reservation deleted successfully
-        "404":
-          description: Reservation not found
+
   /laptop_reservations:
     get:
       summary: Get all laptop reservations
@@ -257,6 +241,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Errors"
+  /laptop_reservations/{id}:
+    delete:
+      summary: Delete a laptop reservation by ID
+      tags:
+        - LaptopReservations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Successful response
+        "404":
+          description: Laptop reservation not found
 components:
   schemas:
     User:
@@ -271,17 +273,15 @@ components:
     Laptop:
       type: object
       properties:
-        id:
-          type: integer
         name:
-          type: string
-        description:
           type: string
         price:
           type: number
         memory:
           type: integer
         cpu:
+          type: string
+        picture:
           type: string
         storage:
           type: integer
