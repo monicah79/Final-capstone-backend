@@ -3,8 +3,7 @@ class ReservationsController < ApplicationController
 
   def index
     reservations = Reservation.all
-
-    render json: reservations
+    render json: reservations, include: %i[user laptop laptop_reservation]
   end
 
   def create
@@ -22,7 +21,8 @@ class ReservationsController < ApplicationController
     reservation = Reservation.find(params[:id])
     user = reservation.user
     laptop = reservation.laptop
-    render json: { reservation:, user:, laptop: }
+    laptop_reservation = reservation.laptop_reservation
+    render json: { reservation:, user:, laptop:, laptop_reservation: }
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'Reservation not found. id might be incorrect or the Reservation might have been deleted' },
            status: :not_found
