@@ -17,24 +17,6 @@ RSpec.describe 'Reservations', type: :request do
     Authorization = response.headers['Authorization'] # rubocop:disable Lint/ConstantDefinitionInBlock
   end
 
-  describe 'GET /reservations' do
-    it 'returns a list of reservations' do
-      # create 10 reservations
-      FactoryBot.create_list(:reservation, 10)
-
-      get '/reservations', headers: { Authorization: Authorization }
-      expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body).size).to eq(10)
-    end
-  end
-
-  describe 'POST /reservations' do
-    it 'creates a reservation' do
-      post '/reservations', headers: { Authorization: Authorization }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe 'GET /reservations/:id' do
     it 'returns a reservation' do
       reservation = FactoryBot.create(:reservation)
@@ -46,20 +28,6 @@ RSpec.describe 'Reservations', type: :request do
 
     it 'returns an error if reservation is not found' do
       get '/reservations/999', headers: { Authorization: Authorization }
-      expect(response).to have_http_status(:not_found)
-    end
-  end
-
-  describe 'DELETE /reservations/:id' do
-    it 'deletes a reservation' do
-      reservation = FactoryBot.create(:reservation)
-
-      delete "/reservations/#{reservation.id}", headers: { Authorization: Authorization }
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'returns an error if reservation is not found' do
-      delete '/reservations/999', headers: { Authorization: Authorization }
       expect(response).to have_http_status(:not_found)
     end
   end

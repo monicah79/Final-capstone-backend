@@ -11,6 +11,13 @@ FactoryBot.define do
     user
   end
 
+  factory :laptop_reservation do
+    laptop
+    reservation
+    city { 'New York' }
+    quantity { 1 }
+  end
+
   factory :laptop do
     name { 'MacBook Pro' }
     price { 1299.99 }
