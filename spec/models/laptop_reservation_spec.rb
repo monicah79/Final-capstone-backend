@@ -5,9 +5,7 @@ RSpec.describe LaptopReservation, type: :model do
       laptop: Laptop.create(name: 'Laptop 1', price: 100),
       reservation: Reservation.create(user_id: 1),
       city: 'New York',
-      quantity: 1,
-      start_date: Date.today,
-      end_date: Date.tomorrow
+      quantity: 1
     }
   end
 
