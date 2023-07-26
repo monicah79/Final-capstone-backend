@@ -18,7 +18,6 @@ FactoryBot.define do
     quantity { 1 }
   end
 
-
   factory :laptop do
     name { 'MacBook Pro' }
     price { 1299.99 }
