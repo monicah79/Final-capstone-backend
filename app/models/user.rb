@@ -6,4 +6,7 @@ class User < ApplicationRecord
          :recoverable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
   has_many :reservations
   has_many :laptops, dependent: :destroy
+  def admin?
+    role == 'admin'
+  end
 end
