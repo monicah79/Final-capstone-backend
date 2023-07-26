@@ -20,7 +20,9 @@ class ReservationsController < ApplicationController
 
   def show
     reservation = Reservation.find(params[:id])
-    render json: reservation
+    user = reservation.user
+    laptop = reservation.laptop
+    render json: { reservation:, user:, laptop: }
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'Reservation not found. id might be incorrect or the Reservation might have been deleted' },
            status: :not_found
