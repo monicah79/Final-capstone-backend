@@ -1,4 +1,6 @@
 class LaptopReservation < ApplicationRecord
+  self.table_name = 'laptops_reservations'
+
   belongs_to :laptop
   belongs_to :reservation
 

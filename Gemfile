@@ -59,3 +59,5 @@ end
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+gem 'rswag-api'
+gem 'rswag-ui'
