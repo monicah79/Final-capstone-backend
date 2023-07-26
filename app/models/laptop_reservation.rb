@@ -6,5 +6,4 @@ class LaptopReservation < ApplicationRecord
 
   validates :city, presence: true
   validates :quantity, numericality: { greater_than: 0 }
-  
 end
