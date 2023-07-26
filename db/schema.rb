@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_142735) do
     t.index ["user_id"], name: "index_laptops_on_user_id"
   end
 
-  create_table "laptops_reservations", id: false, force: :cascade do |t|
+  create_table "laptops_reservations", id: :serial, force: :cascade do |t|
     t.bigint "laptop_id", null: false
     t.bigint "reservation_id", null: false
     t.string "city"
