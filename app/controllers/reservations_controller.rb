@@ -9,7 +9,10 @@ class ReservationsController < ApplicationController
 
   def create
     reservation = Reservation.new
+    laptop_reservation = LaptopReservation.create(reservation_id: reservation.id, laptop_id: params[:reservation][:laptop_id],
+                                                  quantity: params[:reservation][:quantity], city: params[:reservation][:city])
     reservation.user = current_user
+    reservation.laptop_reservation = laptop_reservation
 
     if reservation.save
       render json: reservation, status: :created
@@ -33,5 +36,11 @@ class ReservationsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'Reservation not found. id might be incorrect or the Reservation might have been deleted' },
            status: :not_found
+  end
+
+  private
+
+  def reservation_params
+    params.require(:reservation).permit(:laptop_id, :quantity, :city)
   end
 end
