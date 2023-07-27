@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   resources :laptops, only: %i[index create show destroy]
   resources :reservations, only: %i[show index create destroy]
-  resources :laptop_reservations
+  resources :laptop_reservations, only: %i[show index]
 end

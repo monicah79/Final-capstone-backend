@@ -6,6 +6,11 @@ class LaptopsController < ApplicationController
     render json: { error: exception.message }, status: :forbidden
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
+    render json: { error: 'Laptop not found' }, status: :not_found
+  end
+
+
   def index
     laptops = Laptop.all
 
@@ -26,16 +31,12 @@ class LaptopsController < ApplicationController
   def show
     laptop = Laptop.find(params[:id])
     render json: laptop
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Laptop not found' }, status: :not_found
   end
 
   def destroy
     laptop = Laptop.find(params[:id])
     laptop.destroy
     head :no_content
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Laptop not found' }, status: :not_found
   end
 
   private

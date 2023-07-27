@@ -65,6 +65,8 @@ paths:
                       type: string
                     name:
                       type: string
+                    admin_password:
+                      type: string
       responses:
         "201":
           description: Successful signup
@@ -191,6 +193,31 @@ paths:
                   $ref: "#/components/schemas/Reservation"
         "404":
           description: Reservation not found
+    post:
+      summary: Create a reservation
+      tags:
+        - Reservations
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReservationRequest"
+      responses:
+        "201":
+          description: Reservation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        "422":
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+
   /reservations/{id}:
     get:
       summary: Get a reservation by ID
@@ -213,6 +240,23 @@ paths:
                 $ref: "#/components/schemas/Reservation"
         "404":
           description: Reservation not found
+    delete:
+      summary: Delete a reservation by ID
+      tags:
+        - Reservations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Successful response
+        "404":
+          description: Reservation not found
 
   /laptop_reservations:
     get:
@@ -230,35 +274,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/LaptopReservation"
-    post:
-      summary: Create a laptop reservation
-      tags:
-        - LaptopReservations
-      security:
-        - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/LaptopReservation"
-      responses:
-        "201":
-          description: Laptop reservation created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reservation:
-                    $ref: "#/components/schemas/Reservation"
-                  laptop_reservation:
-                    $ref: "#/components/schemas/LaptopReservation"
-        "422":
-          description: Validation errors
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Errors"
+
   /laptop_reservations/{id}:
     get:
       summary: Get a laptop reservation by ID
@@ -281,23 +297,7 @@ paths:
                 $ref: "#/components/schemas/LaptopReservation"
         "404":
           description: Laptop reservation not found
-    delete:
-      summary: Delete a laptop reservation by ID
-      tags:
-        - LaptopReservations
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-      responses:
-        "204":
-          description: Successful response
-        "404":
-          description: Laptop reservation not found
+
 components:
   schemas:
     User:
@@ -327,8 +327,17 @@ components:
     Reservation:
       type: object
       properties:
-        id:
+        laptop_id:
           type: integer
+        city:
+          type: string
+        quantity:
+          type: integer
+    ReservationRequest:
+      type: object
+      properties:
+        reservation:
+          $ref: "#/components/schemas/Reservation"
     LaptopReservation:
       type: object
       properties:

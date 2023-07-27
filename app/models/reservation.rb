@@ -3,4 +3,3 @@ class Reservation < ApplicationRecord
   has_one :laptop_reservation, dependent: :destroy
   has_one :laptop, through: :laptop_reservation
 end
-

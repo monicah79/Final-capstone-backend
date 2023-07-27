@@ -3,8 +3,9 @@ require 'faker'
 FactoryBot.define do
   factory :user do
     name { Faker.name }
-    email { Faker::Internet.email }
+    sequence(:email) { |n| "#{n}_#{Faker::Internet.email}" }
     password { Faker::Internet.password }
+    role { 'admin' }
   end
 
   factory :reservation do
@@ -26,12 +27,5 @@ FactoryBot.define do
     picture { 'https' }
     storage { 512 }
     association :user
-  end
-
-  factory :laptop_reservation do
-    laptop
-    reservation
-    city { "New York" }
-    quantity { 1 }
   end
 end
