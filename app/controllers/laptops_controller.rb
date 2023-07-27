@@ -1,6 +1,10 @@
 class LaptopsController < ApplicationController
-  # load_and_authorize_resource
+  load_and_authorize_resource
   before_action :authenticate_user!
+
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: { error: exception.message }, status: :forbidden
+  end
 
   def index
     laptops = Laptop.all
