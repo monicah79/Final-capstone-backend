@@ -56,6 +56,7 @@ group :test do
   gem 'faker'
 end
 
+gem 'cancancan'
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
