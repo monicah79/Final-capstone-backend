@@ -77,7 +77,6 @@ RSpec.describe 'Reservations', type: :request do
     end
   end
 
-
   describe 'POST #create' do
     context 'when a user is authenticated' do
       let(:laptop) { FactoryBot.create(:laptop) }

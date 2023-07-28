@@ -10,7 +10,6 @@ class LaptopsController < ApplicationController
     render json: { error: 'Laptop not found' }, status: :not_found
   end
 
-
   def index
     laptops = Laptop.all
 
