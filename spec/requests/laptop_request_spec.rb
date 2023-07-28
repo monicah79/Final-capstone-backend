@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Laptops', type: :request do
-  # remember to use FactoryBot.build(:user) instead of FactoryBot.create(:user)
-  # because FactoryBot.create(:user) will create a user in the database
-  # but FactoryBot.build(:user) will only build attributes for a user
-  let(:user) { FactoryBot.build(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     # signup user
-    post '/signup', params: { user: { name: user.name, email: user.email, password: user.password } }
+    post '/signup',
+         params: { user: { name: user.name, email: 'user@email', password: user.password,
+                           admin_password: '69420lesgooo' } }
     expect(response).to have_http_status(:success)
 
     # login user
-    post '/login', params: { user: { email: user.email, password: user.password } }
+    post '/login', params: { user: { email: 'user@email', password: user.password } }
     expect(response).to have_http_status(:success)
     @authorization = response.headers['Authorization']
   end
@@ -36,10 +35,12 @@ RSpec.describe 'Laptops', type: :request do
           price: 1299.99,
           cpu: 'Intel Core i7',
           memory: 16,
+          picture: 'https',
           storage: 512
         }
       }
       post '/laptops', params: laptop_params, headers: { Authorization: @authorization }
+
       expect(response).to have_http_status(:success)
     end
   end
@@ -55,6 +56,7 @@ RSpec.describe 'Laptops', type: :request do
 
     it 'returns an error if laptop is not found' do
       get '/laptops/999', headers: { Authorization: @authorization }
+
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -64,11 +66,13 @@ RSpec.describe 'Laptops', type: :request do
       laptop = FactoryBot.create(:laptop)
 
       delete "/laptops/#{laptop.id}", headers: { Authorization: @authorization }
+
       expect(response).to have_http_status(:success)
     end
 
     it 'returns an error if laptop is not found' do
       delete '/laptops/999', headers: { Authorization: @authorization }
+
       expect(response).to have_http_status(:not_found)
     end
   end

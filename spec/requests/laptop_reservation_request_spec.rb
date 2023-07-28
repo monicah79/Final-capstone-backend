@@ -14,30 +14,27 @@ RSpec.describe 'LaptopReservations', type: :request do
     @authorization = response.headers['Authorization']
   end
 
-  describe 'POST #create' do
+  describe 'GET #index' do
     context 'when a user is authenticated' do
-      let(:valid_attributes) do
-        {
-          laptop_reservation: FactoryBot.attributes_for(:laptop_reservation).merge(
-            laptop_id: FactoryBot.create(:laptop).id
-          )
+      it 'returns a status of :ok' do
+        get '/laptop_reservations', headers: { 'Authorization' => @authorization }
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns the laptop reservations of the current user' do
+        laptop = FactoryBot.create(:laptop)
+        reservation_params = {
+          reservation: {
+            laptop_id: laptop.id,
+            quantity: 1,
+            city: 'New York'
+          }
         }
-      end
-
-      it 'creates a new laptop reservation' do
-        expect do
-          post '/laptop_reservations', params: valid_attributes, headers: { 'Authorization' => @authorization }
-        end.to change(LaptopReservation, :count).by(1)
-      end
-
-      it 'returns a status of :created' do
-        post '/laptop_reservations', params: valid_attributes, headers: { 'Authorization' => @authorization }
+        post '/reservations', params: reservation_params, headers: { 'Authorization' => @authorization }
         expect(response).to have_http_status(:created)
-      end
 
-      it 'returns the new laptop reservation' do
-        post '/laptop_reservations', params: valid_attributes, headers: { 'Authorization' => @authorization }
-        expect(response.body).to match(/New York/)
+        get '/laptop_reservations', headers: { 'Authorization' => @authorization }
+        expect(response.body).to include('New York')
       end
     end
   end

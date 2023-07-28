@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_many :laptops, dependent: :destroy
   def admin?
     role == 'admin'
