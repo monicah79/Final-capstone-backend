@@ -33,7 +33,8 @@ class ReservationsController < ApplicationController
         quantity: params[:reservation][:quantity],
         city: params[:reservation][:city]
       )
-      render json: { reservation:, laptop_reservation: }, status: :created
+      laptop = Laptop.find(params[:reservation][:laptop_id])
+      render json: { reservation:, laptop_reservation:, laptop: }, status: :created
     else
       render json: reservation.errors, status: :unprocessable_entity
     end
