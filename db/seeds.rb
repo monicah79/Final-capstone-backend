@@ -3,14 +3,18 @@ user = User.create(email: 'user@example.com', password: 'password')
 user.save
 
 # create a laptop
-laptop = Laptop.create(
-  name: 'Example Laptop',
-  price: 999.99,
-  cpu: 'Intel Core i7',
-  picture: 'https://example.com/laptop.jpg',
-  memory: 16,
-  storage: 512,
-  user: user
-)
+laptop: {
+          name: 'MacBook Pro',
+          price: 1299.99,
+          cpu: 'Intel Core i7',
+          memory: 16,
+          picture: 'https',
+          storage: 512
+        }
 
-puts "Created laptop: #{laptop.name}"
+# create reservation
+reservation: {
+            laptop_id: laptop.id,
+            quantity: 1,
+            city: 'New York'
+          }
