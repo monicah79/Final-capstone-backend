@@ -24,9 +24,9 @@
 
 # 📖 Final-capstone-backend App <a name="about-project"></a>
 
-- Laptop eccormerce is the project built with Rails api to connect to the frontend react and redux. it's an application that allows only admins to add and  delete laptops. And allows users to read and reserve the laptops of their choice.
+- Laptop E-commerce is a project built with Rails API to connect to the frontend react and redux. it's an application that allows only admins to add and  delete laptops. And allows users to read and reserve the laptops of their choice.
 
--link for front end []
+-link for front end [https://github.com/shasherazi/laptops-ecommerce.git]
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -49,7 +49,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- Api end points
+- API endpoints
 - React on ruby on rails
 - See random greeting
 
@@ -74,8 +74,8 @@ Clone this repository to your desired folder:
 - git clone `https://github.com/monicah79/Final-capstone-backend.git`
 - cd Final-capstone-backend
 - bundle install
-- rails db:create
-- rails db:migrate
+- rails db: create
+- rails db: migrate
 
 ### Usage
 
@@ -87,7 +87,7 @@ To run the project, execute the following command:
 
 To run tests, run the following command accordingly:
 
-- `rails db:seed RAILS_ENV=test`
+- `rails db: seed RAILS_ENV=test`
 
 - `rspec`
 
@@ -147,7 +147,7 @@ Feel free to check the [issues page](https://github.com/monicah79/Final-capstone
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project then don't forget to give a star star on this repository.
+If you like this project then don't forget to give a star on this repository.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,7 +155,7 @@ If you like this project then don't forget to give a star star on this repositor
 
 ## 🤝 Acknowledgement <a name="Acknowledgement"></a>
 
-I would like to thank microverse for their resources. And my team for the great collaboration through each step. Their hard work and insights led to us building something we all proud of.
+I would like to thank Microverse for its resources. And my team for the great collaboration through each step. Their hard work and insights led to us building something we are all proud of.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
