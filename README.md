@@ -74,8 +74,11 @@ Clone this repository to your desired folder:
 - git clone `https://github.com/monicah79/Final-capstone-backend.git`
 - cd Final-capstone-backend
 - bundle install
-- rails db: create
-- rails db: migrate
+- Remove config/master.key and config/credentials.yml.enc if they exist.
+- Run `rails secret`.  Copy the key.
+- Run EDITOR="code --wait" bin/rails credentials:edit
+- In the editor that opens, add this:  devise_jwt_secret_key: <the key you copied in step 1>
+- Save the file and close the editor.  New master.key, credentials.yml.enc files will be generated, and the key will be stored in `Rails.application.credentials.devise_jwt_secret_key`.
 
 ### Usage
 
