@@ -24,9 +24,9 @@
 
 # 📖 Final-capstone-backend App <a name="about-project"></a>
 
-- 
+- Laptop eccormerce is the project built with Rails api to connect to the frontend react and redux. it's an application that allows only admins to add and  delete laptops. And allows users to read and reserve the laptops of their choice.
 
--link for front end 
+-link for front end []
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -103,6 +103,27 @@ To run tests, run the following command accordingly:
 - Twitter: [@MonicahWanjema](https://twitter.com/MonicaWanjema)
 - LinkedIn: [monicah-wanjema](https://www.linkedin.com/in/monicah-wanjema/)
 
+**Imran Hossain**
+
+- GitHub: [@imranhossainemi](https://github.com/imranhossainemi)
+
+👤 **Anthony Martin**
+
+- GitHub: [shasherazi](https://github.com/shasherazi)
+- Twitter: [shasherazi](https://twitter.com/shasherazi)
+- LinkedIn: [shasherazi](https://www.linkedin.com/in/shasherazi)
+
+👤 **Fuad Abdlemoin**
+
+- GitHub: [@fuadmoin](https://github.com/fuadmoin)
+- Twitter: [@Fuad01804580](https://twitter.com/Fuad01804580)
+- LinkedIn: [Fuad Moin](https://www.linkedin.com/in/fuadmoin/)
+
+👤 **Oscar Byiringiro**
+
+- GitHub: [@githuboscar](https://github.com/byiringiroscar)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/oscar-byiringiro-9baa8313a/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
@@ -134,7 +155,7 @@ If you like this project then don't forget to give a star star on this repositor
 
 ## 🤝 Acknowledgement <a name="Acknowledgement"></a>
 
-I would like to thank microverse for their resources.
+I would like to thank microverse for their resources. And my team for the great collaboration through each step. Their hard work and insights led to us building something we all proud of.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
