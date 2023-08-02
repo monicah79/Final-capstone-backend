@@ -26,7 +26,7 @@
 
 - Laptop E-commerce is a project built with Rails API to connect to the frontend react and redux. it's an application that allows only admins to add and  delete laptops. And allows users to read and reserve the laptops of their choice.
 
-- link for front end [https://github.com/shasherazi/laptops-ecommerce/pull/35]
+- link for [Front-end](https://github.com/shasherazi/laptops-ecommerce)
 - kandan board srceenshot [image](./kanbanBoardImg.png)
 - kandan board project [Link](https://github.com/users/shasherazi/projects/5/views/1)
 - Total number of people worked in this project is Five.
