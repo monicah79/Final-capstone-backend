@@ -33,6 +33,7 @@ class LaptopsController < ApplicationController
 
   def destroy
     laptop = Laptop.find(params[:id])
+    laptop.reservations.destroy_all
     laptop.destroy
     head :no_content
   end

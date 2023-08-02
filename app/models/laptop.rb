@@ -1,6 +1,7 @@
 class Laptop < ApplicationRecord
-  has_many :reservations, through: :laptop_reservations
   has_many :laptop_reservations, dependent: :delete_all
+  has_many :reservations, through: :laptop_reservations, dependent: :destroy
+
   belongs_to :user, class_name: 'User', foreign_key: 'user_id'
 
   validates :name, presence: true
