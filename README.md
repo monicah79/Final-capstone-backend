@@ -28,6 +28,8 @@
 
 - link for front end [https://github.com/shasherazi/laptops-ecommerce/pull/35]
 - kandan board srceenshot [image](./kanbanBoardImg.png)
+- kandan board project [Link](https://github.com/users/shasherazi/projects/5/views/1)
+- Total number of people worked in this project is Five.
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
