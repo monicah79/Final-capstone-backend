@@ -25,15 +25,17 @@ class ReservationsController < ApplicationController
   def create
     reservation = Reservation.new
     reservation.user = current_user
+    laptop = Laptop.find(params[:reservation][:laptop_id])
 
     if reservation.save
       laptop_reservation = LaptopReservation.create(
         reservation_id: reservation.id,
-        laptop_id: params[:reservation][:laptop_id],
+        laptop_id: laptop.id,
         quantity: params[:reservation][:quantity],
         city: params[:reservation][:city]
       )
-      render json: { reservation:, laptop_reservation: }, status: :created
+
+      render json: { reservation:, laptop_reservation:, laptop: }, status: :created
     else
       render json: reservation.errors, status: :unprocessable_entity
     end
