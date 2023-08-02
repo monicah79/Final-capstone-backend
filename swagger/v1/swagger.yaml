@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: Laptops Ecommerce API
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:3000/
+paths:
+  /login:
+    post:
+      summary: Login
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "401":
+          description: Invalid email or password
+  /logout:
+    delete:
+      summary: Logout
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Successful logout
+  /signup:
+    post:
+      summary: Signup
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    name:
+                      type: string
+                    admin_password:
+                      type: string
+      responses:
+        "201":
+          description: Successful signup
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "422":
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+  /current_user:
+    get:
+      summary: Get current user information
+      tags:
+        - Users
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Unauthorized
+  /laptops:
+    get:
+      summary: Get all laptops
+      tags:
+        - Laptops
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Laptop"
+    post:
+      summary: Create a laptop
+      tags:
+        - Laptops
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Laptop"
+      responses:
+        "201":
+          description: Laptop created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Laptop"
+        "422":
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+  /laptops/{id}:
+    get:
+      summary: Get a laptop by ID
+      tags:
+        - Laptops
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Laptop"
+        "404":
+          description: Laptop not found
+    delete:
+      summary: Delete a laptop by ID
+      tags:
+        - Laptops
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Successful response
+        "404":
+          description: Laptop not found
+  /reservations:
+    get:
+      summary: Get all reservations
+      tags:
+        - Reservations
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Reservation"
+        "404":
+          description: Reservation not found
+    post:
+      summary: Create a reservation
+      tags:
+        - Reservations
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReservationRequest"
+      responses:
+        "201":
+          description: Reservation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        "422":
+          description: Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Errors"
+
+  /reservations/{id}:
+    get:
+      summary: Get a reservation by ID
+      tags:
+        - Reservations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reservation"
+        "404":
+          description: Reservation not found
+    delete:
+      summary: Delete a reservation by ID
+      tags:
+        - Reservations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Successful response
+        "404":
+          description: Reservation not found
+
+  /laptop_reservations:
+    get:
+      summary: Get all laptop reservations
+      tags:
+        - LaptopReservations
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LaptopReservation"
+
+  /laptop_reservations/{id}:
+    get:
+      summary: Get a laptop reservation by ID
+      tags:
+        - LaptopReservations
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LaptopReservation"
+        "404":
+          description: Laptop reservation not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+    Laptop:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        memory:
+          type: integer
+        cpu:
+          type: string
+        picture:
+          type: string
+        storage:
+          type: integer
+    Reservation:
+      type: object
+      properties:
+        laptop_id:
+          type: integer
+        city:
+          type: string
+        quantity:
+          type: integer
+    ReservationRequest:
+      type: object
+      properties:
+        reservation:
+          $ref: "#/components/schemas/Reservation"
+    LaptopReservation:
+      type: object
+      properties:
+        laptop_id:
+          type: integer
+        city:
+          type: string
+        quantity:
+          type: integer
+    Errors:
+      type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
