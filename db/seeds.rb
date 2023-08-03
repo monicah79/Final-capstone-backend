@@ -9,7 +9,7 @@ laptop= Laptop.create!(
           price: 1299.99,
           cpu: 'Intel Core i7',
           memory: 16,
-          picture: 'https',
+          picture: 'https://khareedomobile.pk/wp-content/uploads/2023/04/Macbook-Pro-M2.png',
           storage: 512
 )
 
