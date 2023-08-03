@@ -265,6 +265,7 @@ DEPENDENCIES
   debug
   devise
   devise-jwt
+  dotenv (~> 2.8)
   dotenv-rails
   factory_bot_rails
   faker

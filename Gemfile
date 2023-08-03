@@ -62,3 +62,5 @@ gem 'devise-jwt'
 gem 'jsonapi-serializer'
 gem 'rswag-api'
 gem 'rswag-ui'
+
+gem "dotenv", "~> 2.8"
