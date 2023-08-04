@@ -128,7 +128,7 @@ To run tests, run the following command accordingly:
 👤 **Oscar Byiringiro**
 
 - GitHub: [@githuboscar](https://github.com/byiringiroscar)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/oscar-byiringiro-9baa8313a/)
+- LinkedIn: [Oscar](https://www.linkedin.com/in/oscarbyiringiro/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
